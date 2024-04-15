@@ -1,0 +1,33 @@
+table {
+    width: 800px;
+    /*  height: 175px; */
+    padding: 10px;
+    border-collapse: collapse;
+    border-bottom: 2px solid black;
+    /*  border: 2px solid black; */
+}
+tr {
+    border-bottom: 0.5px solid rgba(179, 179, 179, 0.712);
+    height: 50px;
+}
+th {
+    border-bottom: 2px solid black;
+    /*  border: 2px solid black; */
+}
+
+td {
+    text-align: center;
+    /* border: 2px solid black; */
+}
+.entriesNumber_Select {
+    display: flex;
+    justify-self: flex-start;
+    align-self: self-start;
+}
+/* .dataTable_page_wrapper {
+    width: 1240px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */

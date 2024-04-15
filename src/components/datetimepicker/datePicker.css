@@ -1,0 +1,11 @@
+.DatePicker {
+    display: flex;
+}
+.DatePicker input[type='button'] {
+    background: center / contain no-repeat url('src/assets/calenda_ico.svg');
+    width: 25px;
+    height: 25px;
+    border: 1.5px solid;
+    border-radius: 5px;
+    margin-left: 15px;
+}
