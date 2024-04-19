@@ -2,18 +2,19 @@ import { Link } from 'react-router-dom';
 
 import States from 'src/assets/states';
 import employeeDepartement from 'src/assets/employeeDepartement';
-import Select from 'src/components/select/select';
-//import Calendar from 'src/components/datetimepicker/calendar';
+//import Select from 'src/components/select/select';
+
 import Datepicker from 'src/components/datetimepicker/datePicker';
 import { isDate, getDateISO } from 'src/components/datetimepicker/calendarAssets';
 
 import Modal from 'src/components/modal/modal';
 import { /* useEffect, */ useState /* , createContext */ } from 'react';
-//import Datepicker from 'src/components/datetimepicker/datePicker';
+
+import Select from 'react-select-pckg';
+//import Select from 'src/components/select/select';
 
 function Home() {
     const [modalOpen, setModalOpen] = useState(false);
-    //const [modalContent, setModalContent] = useState('');
     const [selectedA, setSelectedA] = useState(0);
 
     const statesNames = States.map((state) => {
