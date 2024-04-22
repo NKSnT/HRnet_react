@@ -19,15 +19,18 @@ td {
     text-align: center;
     /* border: 2px solid black; */
 }
-.entriesNumber_Select {
+.table_header {
+    width: 100%;
     display: flex;
-    justify-self: flex-start;
-    align-self: self-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    flex-wrap: wrap;
 }
-/* .dataTable_page_wrapper {
-    width: 1240px;
-    padding: 0 10px 0 10px;
+.table_header label {
+    margin: 0;
+}
+.table_header div {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
+    align-self: center;
+}

@@ -48,7 +48,7 @@ function DataTable(props) {
     };
     return (
         <>
-            <div>
+            <div className="table_header">
                 <div className="entriesNumber_Select">
                     Show
                     <Select
