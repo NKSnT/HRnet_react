@@ -18,7 +18,7 @@ function DataTable(props) {
 
         const slice = sliceData(data, page, entriesNumber);
         setSlice([...slice]);
-    }, [data, entriesNumber]);
+    }, [data, entriesNumber, page]);
     function calculateRange(data, rowsPerPage) {
         const range = [];
         const num = Math.ceil(data.length / rowsPerPage);
@@ -104,8 +104,8 @@ function DataTable(props) {
                 </table>
                 <div className="tableFooter_wrapper">
                     <div>
-                        show {page == 1 ? 1 : page * entriesNumber + 1}to {slice.length} of{' '}
-                        {employees.length}
+                        show {page == 1 ? 1 : page * entriesNumber + 1} to {slice.length} of{' '}
+                        {employees.length} entries
                     </div>
                     <TableFooter
                         range={tableRange}
