@@ -9,16 +9,14 @@ import './datePicker.css';
 export default function Datepicker(props) {
     const [dateState, setDateState] = useState(null);
     const [calendarOpen, setCalendarOpen] = useState(false);
-    const toggleCalendar = () => setCalendarOpen(!calendarOpen);
 
     const reg =
         /^(\d{0,4}?|(\d{0,4} )|(\d{0,4} \/)|(\d{0,4} \/ )|(\d{0,4} \/ \d)|(\d{0,4} \/ \d{2})|(\d{0,4} \/ \d{2} )|(\d{0,4} \/ \d{2} \/)|(\d{0,4} \/ \d{2} \/ )|(\d{0,4} \/ \d{2} \/ \d)|(\d{0,4} \/ \d{2} \/ \d{2}))$/;
-    // only allow YYYY / MM / DD date format and it "inWritting' variant (ex: YYYY / M)
+    // only allow YYYY / MM / DD date format and it's "inWritting' variant (ex: YYYY / M)
 
     const handleChange = (evt) => {
         evt.preventDefault();
         let inputValue = evt.target.value;
-        console.log(inputValue);
 
         if (evt.target.value.length == 4 || evt.target.value.length == 9) {
             //auto séparator with /
@@ -37,8 +35,6 @@ export default function Datepicker(props) {
             setCalendarOpen(false);
             evt.target.blur();
         }
-        console.log(inputValue);
-        console.log(reg.test(inputValue));
         if (reg.test(inputValue)) {
             setDateState(inputValue);
         }
@@ -76,7 +72,6 @@ export default function Datepicker(props) {
                     <input
                         id={props.id}
                         type="text"
-                        //type="date"
                         value={dateState ? dateState.split('-').join(' / ') : ''}
                         onChange={handleChange}
                         pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"

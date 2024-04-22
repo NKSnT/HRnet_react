@@ -37,8 +37,6 @@ function Home() {
         if (firstName && lastName && street && zipCode && city && dateOfBirth && startDate) {
             const birthDate = dateOfBirth.split(' ').join('').split('/').join('-');
             const dateOfStart = startDate.split(' ').join('').split('/').join('-');
-            // const birthDate = new Date(dateOfBirth.split(' ').join('').split('/').join('-'));
-            // const dateOfStart = new Date(startDate.split(' ').join('').split('/').join('-'));
             const isBirthDate = isDate(new Date(birthDate));
             const isDateOfStart = isDate(new Date(dateOfStart));
             if (isBirthDate && isDateOfStart) {

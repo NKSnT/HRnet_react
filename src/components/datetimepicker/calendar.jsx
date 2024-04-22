@@ -12,8 +12,7 @@ import calendar, {
     CALENDAR_MONTHS_EN
 } from './calendarAssets';
 export default function Calendar({ date, onDateChanged }) {
-    //const [dateState, setDateState] = useState({ current: 0, month: 0, year: 0 });
-    const [dateState, setDateState] = useState({ current: 2, month: 4, year: 2024 });
+    const [dateState, setDateState] = useState({ current: 1, month: 1, year: 1 });
     const [today, setToday] = useState(new Date());
 
     useEffect(() => {
@@ -122,7 +121,6 @@ export default function Calendar({ date, onDateChanged }) {
             </Styled.CalendarHeader>
         );
     };
-
     // Render the label for day of the week
     // This method is used as a map callback as seen in render()
     const renderDayLabel = (day, index) => {
