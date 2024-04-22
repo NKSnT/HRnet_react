@@ -1,9 +1,6 @@
-// @/src/components/Table/TableFooter/index.jsx
-import React, { useEffect } from 'react';
-
 //import styles from './TableFooter.module.css';
 
-const TableFooter = ({ range, setPage, page, slice }) => {
+const TableFooter = ({ range, setPage, page }) => {
     //not tested but should work
     //if big number of page, use this version, to only display n page and navigate with previous/next btn
     return (

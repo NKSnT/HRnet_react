@@ -102,7 +102,18 @@ function DataTable(props) {
                         })}
                     </tbody>
                 </table>
-                <TableFooter range={tableRange} slice={slice} setPage={setPage} page={page} />
+                <div className="tableFooter_wrapper">
+                    <div>
+                        show {page == 1 ? 1 : page * entriesNumber + 1}to {slice.length} of{' '}
+                        {employees.length}
+                    </div>
+                    <TableFooter
+                        range={tableRange}
+                        setPage={setPage}
+                        page={page}
+                        entriesNumber={entriesNumber}
+                    />
+                </div>
             </div>
         </>
     );
