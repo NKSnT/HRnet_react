@@ -5,7 +5,7 @@ import employeeDepartement from 'src/assets/employeeDepartement';
 //import Select from 'src/components/select/select';
 
 import Datepicker from 'src/components/datetimepicker/datePicker';
-import { isDate, getDateISO } from 'src/components/datetimepicker/calendarAssets';
+import { isDate /* , getDateISO  */ } from 'src/components/datetimepicker/calendarAssets';
 
 import Modal from 'src/components/modal/modal';
 import { /* useEffect, */ useState /* , createContext */ } from 'react';
@@ -15,7 +15,6 @@ import Select from 'react-select-pckg';
 
 function Home() {
     const [modalOpen, setModalOpen] = useState(false);
-    const [selectedA, setSelectedA] = useState(0);
 
     const statesNames = States.map((state) => {
         return state.name;
