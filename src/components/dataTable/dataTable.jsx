@@ -1,24 +1,40 @@
 import './dataTable.css';
+import { useEffect, useState } from 'react';
 import Select from 'react-select-pckg';
-//import Select from 'src/components/select/select';
 
+import TableBody from './dataTable_body';
+import TableHeader from './dataTable_header';
 import TableFooter from './dataTable_footer';
-import { /* useEffect, */ useEffect, useState /* , createContext */ } from 'react';
-function DataTable(props) {
-    const employees = props.data;
 
+import { useSortableTable } from './tableSorting_assets';
+
+function DataTable(props) {
+    //const employees = props.data;
+
+    const [tableData, handleSorting, setData] = useSortableTable(props.data); //access to the store after dev
     const [entriesNumber, setEntriesNumber] = useState(10);
     const [tableRange, setTableRange] = useState([]);
     const [slice, setSlice] = useState([]);
     const [page, setPage] = useState(1);
-    const [data, setData] = useState(employees);
+
+    const columns = [
+        { label: 'First Name', accessor: 'firstName', sortable: true, sortbyOrder: 'desc' },
+        { label: 'Last Name', accessor: 'lastName', sortable: true },
+        { label: 'Start Date', accessor: 'startDate', sortable: true },
+        { label: 'Departement', accessor: 'department', sortable: true },
+        { label: 'Date of Birth', accessor: 'dateOfBirth', sortable: true },
+        { label: 'Street', accessor: 'street', sortable: true },
+        { label: 'City', accessor: 'city', sortable: true },
+        { label: 'State', accessor: 'state', sortable: true },
+        { label: 'Zip Code', accessor: 'zipCode', sortable: true }
+    ];
     useEffect(() => {
-        const range = calculateRange(data, entriesNumber);
+        const range = calculateRange(tableData, entriesNumber);
         setTableRange([...range]);
 
-        const slice = sliceData(data, page, entriesNumber);
+        const slice = sliceData(tableData, page, entriesNumber);
         setSlice([...slice]);
-    }, [data, entriesNumber, page]);
+    }, [tableData, entriesNumber, page]);
     function calculateRange(data, rowsPerPage) {
         const range = [];
         const num = Math.ceil(data.length / rowsPerPage);
@@ -35,7 +51,7 @@ function DataTable(props) {
         evt.preventDefault();
         let inputValue = evt.target.value;
         let filteredData = [];
-        employees.map((item) => {
+        tableData.map((item) => {
             Object.values(item).filter((el) => {
                 if (el.toLowerCase().includes(inputValue.toLowerCase())) {
                     if (!filteredData.includes(item)) {
@@ -44,6 +60,7 @@ function DataTable(props) {
                 }
             });
         });
+        setSlice(filteredData);
         setData(filteredData);
     };
     return (
@@ -70,42 +87,16 @@ function DataTable(props) {
             </div>
 
             <div className="table_wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Start Date</th>
-                            <th>Departement</th>
-                            <th>Date of Birth</th>
-                            <th>Street</th>
-                            <th>City</th>
-                            <th>State</th>
-                            <th>Zip Code</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {slice.map((employee, key) => {
-                            return (
-                                <tr key={key}>
-                                    <td>{employee.firstName}</td>
-                                    <td>{employee.lastName}</td>
-                                    <td>{employee.startDate}</td>
-                                    <td>{employee.department}</td>
-                                    <td>{employee.dateOfBirth}</td>
-                                    <td>{employee.street}</td>
-                                    <td>{employee.city}</td>
-                                    <td>{employee.state}</td>
-                                    <td>{employee.zipCode}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
+                <table className="table">
+                    <caption>Employee currently enrolled, column headers are sortable.</caption>
+                    <TableHeader columns={columns} handleSorting={handleSorting} />
+                    {/* <TableHead {...{ columns, handleSorting }} /> same as above*/}
+                    <TableBody columns={columns} tableData={slice} />
                 </table>
                 <div className="tableFooter_wrapper">
                     <div>
                         show {page == 1 ? 1 : page * entriesNumber + 1} to {slice.length} of{' '}
-                        {employees.length} entries
+                        {tableData.length} entries
                     </div>
                     <TableFooter
                         range={tableRange}

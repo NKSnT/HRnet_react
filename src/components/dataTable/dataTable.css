@@ -12,7 +12,9 @@ tr {
 }
 th {
     border-bottom: 2px solid black;
-    /*  border: 2px solid black; */
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 0 7.5px;
 }
 
 td {
@@ -39,4 +41,34 @@ td {
     flex-direction: row;
     justify-content: space-between;
     align-content: center;
+}
+.up::after {
+    content: '';
+    display: inline-block !important;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7.5px solid rgb(131, 0, 253);
+    margin-left: 5px;
+}
+.down::after {
+    content: '';
+    display: inline-block !important;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 7.5px solid rgb(131, 0, 253);
+    margin-left: 5px;
+}
+.default::after {
+    content: '';
+    display: inline-block !important;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid transparent;
+    margin-left: 5px;
 }

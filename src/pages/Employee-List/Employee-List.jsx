@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 import Table from 'src/components/dataTable/dataTable';
+
 function EmployeeList() {
     const employees = JSON.parse(localStorage.getItem('employees')) || [];
     //console.log(employees);
