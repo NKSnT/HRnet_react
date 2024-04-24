@@ -13,15 +13,19 @@ import { /* useEffect, */ useState /* , createContext */ } from 'react';
 import Select from 'react-select-pckg';
 //import Select from 'src/components/select/select';
 
-function Home() {
-    const [modalOpen, setModalOpen] = useState(false);
+import { DataContext } from 'src/app/Contexts.js';
+import { useContext, useEffect } from 'react';
 
+function Home() {
+    const { data, setData } = useContext(DataContext);
+    const [modalOpen, setModalOpen] = useState(false);
     const statesNames = States.map((state) => {
         return state.name;
     });
     const statesAbbreviation = States.map((state) => {
         return state.abbreviation;
     });
+
     function handleSubmit() {
         const firstName = document.getElementById('first-name').value;
         const lastName = document.getElementById('last-name').value;
@@ -39,8 +43,11 @@ function Home() {
             const isBirthDate = isDate(new Date(birthDate));
             const isDateOfStart = isDate(new Date(dateOfStart));
             if (isBirthDate && isDateOfStart) {
-                console.log('yes2');
-                const employees = JSON.parse(localStorage.getItem('employees')) || [];
+                let employees = data
+                    ? data.map((item) => {
+                          return item;
+                      })
+                    : [];
                 const employee = {
                     firstName: firstName,
                     lastName: lastName,
@@ -54,15 +61,39 @@ function Home() {
                     state: state,
                     zipCode: zipCode
                 };
-                console.log(employee);
+                /* employees.push(employee);
+                localStorage.setItem('employees', JSON.stringify(employees)); */
+                console.log(employees);
                 employees.push(employee);
-                localStorage.setItem('employees', JSON.stringify(employees));
+                console.log(employees);
+                setData(employees);
                 openModal();
             } else {
                 alert('unknow date format');
             }
         } else {
-            alert('empty field detected');
+            //alert('empty field detected');
+
+            let employees = data
+                ? data.map((item) => {
+                      return item;
+                  })
+                : [];
+            const employee = {
+                firstName: 'nahel',
+                lastName: 'bassinet',
+                dateOfBirth: '1999 / 02 / 05', // YYYY / MM / DD format, take birthDate if date format needed
+                startDate: '2024 / 04 / 24', // like dateOfStart
+                //dateOfBirth: birthDate, // YYYY-MM-DD
+                //startDate: dateOfStart, //like birthDate
+                department: 'Marketing',
+                street: '14',
+                city: 'IDK',
+                state: 'Alabama',
+                zipCode: '88160'
+            };
+            employees.push(employee);
+            setData(employees);
         }
     }
     const openModal = () => {
@@ -71,11 +102,17 @@ function Home() {
     const closeModal = () => {
         setModalOpen(false);
     };
+    const clearLocalS = () => {
+        localStorage.removeItem('employees');
+        location.reload();
+    };
     return (
         <>
             <div className="title">
                 <h1>HRnet</h1>
             </div>
+            <button onClick={clearLocalS}>Clear local storage</button>
+
             <div className="container">
                 <Link to="/Employee-List" className="main-nav-logo">
                     View Current Employees
