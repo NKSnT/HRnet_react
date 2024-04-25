@@ -51,7 +51,7 @@ function DataTable(props) {
         evt.preventDefault();
         let inputValue = evt.target.value;
         let filteredData = [];
-        tableData.map((item) => {
+        props.data.map((item) => {
             Object.values(item).filter((el) => {
                 if (el.toLowerCase().includes(inputValue.toLowerCase())) {
                     if (!filteredData.includes(item)) {
@@ -60,7 +60,6 @@ function DataTable(props) {
                 }
             });
         });
-        setSlice(filteredData);
         setData(filteredData);
     };
     return (

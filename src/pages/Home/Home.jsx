@@ -61,39 +61,14 @@ function Home() {
                     state: state,
                     zipCode: zipCode
                 };
-                /* employees.push(employee);
-                localStorage.setItem('employees', JSON.stringify(employees)); */
-                console.log(employees);
                 employees.push(employee);
-                console.log(employees);
                 setData(employees);
                 openModal();
             } else {
                 alert('unknow date format');
             }
         } else {
-            //alert('empty field detected');
-
-            let employees = data
-                ? data.map((item) => {
-                      return item;
-                  })
-                : [];
-            const employee = {
-                firstName: 'nahel',
-                lastName: 'bassinet',
-                dateOfBirth: '1999 / 02 / 05', // YYYY / MM / DD format, take birthDate if date format needed
-                startDate: '2024 / 04 / 24', // like dateOfStart
-                //dateOfBirth: birthDate, // YYYY-MM-DD
-                //startDate: dateOfStart, //like birthDate
-                department: 'Marketing',
-                street: '14',
-                city: 'IDK',
-                state: 'Alabama',
-                zipCode: '88160'
-            };
-            employees.push(employee);
-            setData(employees);
+            alert('empty field detected');
         }
     }
     const openModal = () => {
@@ -102,17 +77,12 @@ function Home() {
     const closeModal = () => {
         setModalOpen(false);
     };
-    const clearLocalS = () => {
-        localStorage.removeItem('employees');
-        location.reload();
-    };
+
     return (
         <>
             <div className="title">
                 <h1>HRnet</h1>
             </div>
-            <button onClick={clearLocalS}>Clear local storage</button>
-
             <div className="container">
                 <Link to="/Employee-List" className="main-nav-logo">
                     View Current Employees

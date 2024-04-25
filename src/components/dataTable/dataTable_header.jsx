@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 const TableHeader = ({ columns, handleSorting }) => {
     const [sortField, setSortField] = useState('');
     const [order, setOrder] = useState('asc');
-    const [defaultSorting, setDefaultSorting] = useState(true);
 
     const handleSortingChange = (accessor) => {
         const sortOrder = accessor === sortField && order === 'asc' ? 'desc' : 'asc';
@@ -38,9 +37,6 @@ const TableHeader = ({ columns, handleSorting }) => {
                             onClick={sortable ? () => handleSortingChange(accessor) : null}
                             className={cl}>
                             {label}
-                            {/*  <button onClick={sortable ? () => handleSortingChange(accessor) : null}>
-                                    {' '}
-                                </button> */}
                         </th>
                     );
                 })}

@@ -26,18 +26,6 @@ const TableFooter = ({ range, setPage, page }) => {
             </div>
         </>
     );
-    /* return (
-        <div>
-            {
-                // multiple button type
-                range.map((el, index) => (
-                    <button key={index} onClick={() => setPage(el)}>
-                        {el}
-                    </button>
-                ))
-            }
-        </div>
-    ); */
 };
 
 export default TableFooter;
